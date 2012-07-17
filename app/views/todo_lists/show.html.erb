@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @todo_list.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
+<%= link_to 'Back', todo_lists_path %>
+
+<ul class="todos">
+  <%= render @todo_list.todos %>
+</ul>
+
+<%= form_for [@todo_list, @todo_list.todos.build] do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>
+
+<div data-todo-pjax-container style="display: none;"></div>
+
+<div style="height: 1000px;">
+  test, this div has 1000px height so you can test that it doesn't jump to the top after you submit the form
+</div>
