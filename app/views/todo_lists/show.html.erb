@@ -13,12 +13,10 @@
   <%= render @todo_list.todos %>
 </ul>
 
-<%= form_for [@todo_list, @todo_list.todos.build] do |f| %>
+<%= form_for [@todo_list, @todo_list.todos.build], :remote => true do |f| %>
   <%= f.text_field :name %>
   <%= f.submit %>
 <% end %>
-
-<div data-todo-pjax-container style="display: none;"></div>
 
 <div style="height: 1000px;">
   test, this div has 1000px height so you can test that it doesn't jump to the top after you submit the form
