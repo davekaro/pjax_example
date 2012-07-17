@@ -43,14 +43,14 @@ class TodosController < ApplicationController
     @todo_list = TodoList.find params[:todo_list_id]
     @todo = @todo_list.todos.build(params[:todo])
 
-    respond_to do |format|
-      if @todo.save
-        format.html { redirect_to @todo_list, notice: 'Todo was successfully created.' }
-        format.js
+    if @todo.save
+      if request.xhr?
+        render @todo
       else
-        format.html { render action: "new" }
-        format.js
+        redirect_to @todo_list, notice: 'Todo was successfully created.'
       end
+    else
+      render action: "new"
     end
   end
 
